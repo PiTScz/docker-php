@@ -1,0 +1,12 @@
+name: Commit Lint - Conventional Commits
+
+on: [pull_request]
+
+jobs:
+  main:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: wagoid/commitlint-github-action@v5
+        with:
+          configFile: './.commitlintrc.json'
