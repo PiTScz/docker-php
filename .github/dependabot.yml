@@ -7,7 +7,7 @@ updates:
       interval: 'daily'
       time: '09:00'
     commit-message:
-      prefix: 'github-actions'
+      prefix: 'chore'
       include: 'scope'
 
   - package-ecosystem: 'docker'
@@ -16,5 +16,5 @@ updates:
       interval: 'daily'
       time: '09:00'
     commit-message:
-      prefix: 'docker'
+      prefix: 'chore'
       include: 'scope'
