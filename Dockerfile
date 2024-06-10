@@ -26,7 +26,7 @@ RUN apt-get update && apt-get install -y \
     acl
 
 RUN docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql \
-    && docker-php-ext-install pdo pdo_pgsql pgsql pdo_mysql mysql zip xsl intl opcache exif mbstring
+    && docker-php-ext-install pdo pdo_pgsql pgsql pdo_mysql mysqli zip xsl intl opcache exif mbstring
 
 # Set timezone
 RUN ln -snf /usr/share/zoneinfo/${TIMEZONE} /etc/localtime && echo ${TIMEZONE} > /etc/timezone \
