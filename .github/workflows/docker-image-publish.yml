@@ -9,7 +9,10 @@ on:
 jobs:
   build-and-push-image:
     name: Publish Docker image to registry
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest-large]
+    runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
