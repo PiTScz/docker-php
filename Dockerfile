@@ -1,4 +1,4 @@
-FROM php:8.4.1-fpm
+FROM php:8.4.2-fpm
 
 ARG TIMEZONE="Europe/Prague"
 
