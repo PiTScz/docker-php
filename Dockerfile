@@ -19,21 +19,24 @@ RUN apt-get update && apt-get install -y \
     libpq-dev \
     zlib1g-dev \
     libzip-dev \
+    libjpeg-dev\
     libfreetype6-dev \
+    libpng-dev \
     libicu-dev  \
     libonig-dev \
     libxslt1-dev \
     acl
 
 RUN docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql \
-    && docker-php-ext-install pdo pdo_pgsql pgsql pdo_mysql mysqli zip xsl intl opcache exif mbstring
+    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install pdo pdo_pgsql pgsql pdo_mysql mysqli zip xsl intl opcache exif mbstring gd
 
 # Set timezone
 RUN ln -snf /usr/share/zoneinfo/${TIMEZONE} /etc/localtime && echo ${TIMEZONE} > /etc/timezone \
     && printf '[PHP]\ndate.timezone = "%s"\n', ${TIMEZONE} > /usr/local/etc/php/conf.d/tzone.ini \
     && "date"
 
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 ENV PATH=$PATH:/root/composer/vendor/bin COMPOSER_ALLOW_SUPERUSER=1
 
