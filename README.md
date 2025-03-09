@@ -5,3 +5,5 @@
 ## How to use
 
 Usage on your project: `docker pull ghcr.io/pitscz/docker-php:latest`
+
+**Note:** This image is intended for development purposes only and is not suitable for production deployment.
